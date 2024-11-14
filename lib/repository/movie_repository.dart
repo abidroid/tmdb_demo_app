@@ -37,7 +37,7 @@ class MovieRepository {
   Future<MovieDetailModel?> getMovieDetail({required int movieId}) async {
     try {
       http.Response response =
-          await http.get(Uri.parse("$baseUrl/movie/upcoming?api_key=$apiKey"));
+          await http.get(Uri.parse("$baseUrl/movie/$movieId?api_key=$apiKey"));
 
       logger.d(response.body);
       if (response.statusCode == 200) {
@@ -50,7 +50,9 @@ class MovieRepository {
       } else {
         return null;
       }
-    } catch (e) {
+    } catch (e, st) {
+      logger.e(e);
+      logger.e(st);
       rethrow;
     }
   }

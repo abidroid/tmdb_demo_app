@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tmdb_demo_app/blocs/movie_detail/movie_detail_bloc.dart';
 import 'package:tmdb_demo_app/blocs/upcoming_movies/upcoming_movies_bloc.dart';
 import 'package:tmdb_demo_app/screens/movie_list_screen.dart';
 
@@ -13,19 +14,22 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-              create: (context) =>
-                  UpcomingMoviesBloc()..add(LoadUpcomingMovies())),
-        ],
-        child: const MovieListScreen(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => UpcomingMoviesBloc()..add(LoadUpcomingMovies()),
+        ),
+        BlocProvider(
+          create: (context) => MovieDetailBloc(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: const MovieListScreen(),
       ),
     );
   }
