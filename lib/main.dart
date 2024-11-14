@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tmdb_demo_app/blocs/movie_detail/movie_detail_bloc.dart';
+import 'package:tmdb_demo_app/blocs/trailer/trailer_bloc.dart';
 import 'package:tmdb_demo_app/blocs/upcoming_movies/upcoming_movies_bloc.dart';
 import 'package:tmdb_demo_app/screens/movie_list_screen.dart';
 
@@ -21,6 +22,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => MovieDetailBloc(),
+        ),
+        BlocProvider(
+          create: (context) => TrailerBloc(),
         ),
       ],
       child: MaterialApp(

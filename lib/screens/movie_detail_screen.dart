@@ -6,6 +6,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:logger/logger.dart';
 import 'package:tmdb_demo_app/blocs/movie_detail/movie_detail_bloc.dart';
 import 'package:tmdb_demo_app/models/movie_detail_model.dart';
+import 'package:tmdb_demo_app/screens/trailer_play_screen.dart';
 
 class MovieDetailScreen extends StatefulWidget {
   final int movieId;
@@ -115,7 +116,13 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .push(MaterialPageRoute(builder: (context) {
+                                  return TrailerPlayScreen(
+                                      movieId: widget.movieId);
+                                }));
+                              },
                               icon: const Icon(
                                 Icons.play_arrow,
                                 color: Colors.white,
