@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:tmdb_demo_app/blocs/trailer/trailer_bloc.dart';
@@ -19,6 +20,13 @@ class _TrailerPlayScreenState extends State<TrailerPlayScreen> {
   @override
   void initState() {
     super.initState();
+
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+    ]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+
     context.read<TrailerBloc>().add(FetchTrailerEvent(
           movieId: widget.movieId,
         ));
@@ -26,6 +34,11 @@ class _TrailerPlayScreenState extends State<TrailerPlayScreen> {
 
   @override
   void dispose() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+
     _youtubeController?.dispose();
     super.dispose();
   }
