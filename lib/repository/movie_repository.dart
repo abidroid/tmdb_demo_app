@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:logger/logger.dart';
 import 'package:tmdb_demo_app/models/movie_detail_model.dart';
+import 'package:tmdb_demo_app/models/trailer_model.dart';
 import 'package:tmdb_demo_app/models/upcoming_movie_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -47,6 +48,38 @@ class MovieRepository {
             MovieDetailModel.fromJson(jsonResponse);
 
         return movieDetailModel;
+      } else {
+        return null;
+      }
+    } catch (e, st) {
+      logger.e(e);
+      logger.e(st);
+      rethrow;
+    }
+  }
+
+  Future<TrailerModel?> getMovieTrailer({required int movieId}) async {
+    try {
+      http.Response response = await http
+          .get(Uri.parse("$baseUrl/movie/$movieId/videos?api_key=$apiKey"));
+
+      logger.d(response.body);
+      if (response.statusCode == 200) {
+        var jsonResponse = jsonDecode(response.body);
+
+        var jsonResults = jsonResponse['results'];
+
+        TrailerModel? trailerModel;
+
+        for (var jsonResult in jsonResults) {
+          if (jsonResult['site'] == "YouTube" &&
+              jsonResult['type'] == 'Trailer') {
+            trailerModel = TrailerModel.fromJson(jsonResult);
+            break;
+          }
+        }
+
+        return trailerModel;
       } else {
         return null;
       }
