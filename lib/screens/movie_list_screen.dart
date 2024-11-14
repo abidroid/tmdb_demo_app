@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:tmdb_demo_app/blocs/bloc/upcoming_movies_bloc.dart';
+import 'package:tmdb_demo_app/blocs/upcoming_movies/upcoming_movies_bloc.dart';
 import 'package:tmdb_demo_app/models/upcoming_movie_model.dart';
 import 'package:tmdb_demo_app/screens/movie_detail_screen.dart';
 

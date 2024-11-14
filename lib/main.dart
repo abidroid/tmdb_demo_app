@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmdb_demo_app/blocs/bloc/upcoming_movies_bloc.dart';
+import 'package:tmdb_demo_app/blocs/upcoming_movies/upcoming_movies_bloc.dart';
 import 'package:tmdb_demo_app/screens/movie_list_screen.dart';
 
 void main() {
