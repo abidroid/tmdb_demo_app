@@ -33,7 +33,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
     return Scaffold(
       body: BlocBuilder<MovieDetailBloc, MovieDetailState>(
           builder: (context, state) {
-        if (state is LoadMovieDetail) {
+        if (state is LoadingMovieDetail) {
           return const Center(
             child: SpinKitDualRing(color: Colors.blue),
           );
