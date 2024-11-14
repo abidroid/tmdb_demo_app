@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:tmdb_demo_app/blocs/bloc/upcoming_movies_bloc.dart';
 import 'package:tmdb_demo_app/models/upcoming_movie_model.dart';
+import 'package:tmdb_demo_app/screens/movie_detail_screen.dart';
 
 class MovieListScreen extends StatelessWidget {
   const MovieListScreen({super.key});
@@ -39,30 +40,38 @@ class MovieListScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   UpcomingMovieModel movie = upcomingMovies[index];
 
-                  return Stack(
-                    children: [
-                      SizedBox(
-                          width: double.infinity,
-                          height: 220,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Image.network(
-                                width: double.infinity,
-                                fit: BoxFit.cover,
-                                'https://image.tmdb.org/t/p/w500/${movie.backdropPath}'),
-                          )),
-                      Positioned(
-                        left: 20,
-                        bottom: 20,
-                        child: Text(
-                          movie.title ?? '',
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 18),
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) {
+                        return MovieDetailScreen(movieId: movie.id!);
+                      }));
+                    },
+                    child: Stack(
+                      children: [
+                        SizedBox(
+                            width: double.infinity,
+                            height: 220,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Image.network(
+                                  width: double.infinity,
+                                  fit: BoxFit.cover,
+                                  'https://image.tmdb.org/t/p/w500/${movie.backdropPath}'),
+                            )),
+                        Positioned(
+                          left: 20,
+                          bottom: 20,
+                          child: Text(
+                            movie.title ?? '',
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 18),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   );
                 },
                 separatorBuilder: (context, index) {

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class MovieDetailScreen extends StatefulWidget {
-  const MovieDetailScreen({super.key});
+  final int movieId;
+  const MovieDetailScreen({super.key, required this.movieId});
 
   @override
   State<MovieDetailScreen> createState() => _MovieDetailScreenState();
