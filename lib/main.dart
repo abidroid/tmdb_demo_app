@@ -21,7 +21,9 @@ class MyApp extends StatelessWidget {
       ),
       home: MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => UpcomingMoviesBloc()),
+          BlocProvider(
+              create: (context) =>
+                  UpcomingMoviesBloc()..add(LoadUpcomingMovies())),
         ],
         child: const MovieListScreen(),
       ),
